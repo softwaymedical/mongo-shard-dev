@@ -1,0 +1,11 @@
+mongo-shard-master:
+  image: softwaymedical/mongo-shard:0.0.4
+  environment:
+    - MONGOS_SERVER_HOST=mongos
+    - MONGOS_SERVER_PORT=27017
+    - MONGO_DATABASE=test
+  links:
+    - mongo-shard-config/mongos:mongos
+    - mongo-shard-config/mongo-config-server-1:config-1
+    - mongo-shard-config/mongo-config-server-2:config-2
+    - mongo-shard-config/mongo-config-server-3:config-3
