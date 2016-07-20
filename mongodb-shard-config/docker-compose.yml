@@ -1,0 +1,33 @@
+mongo-config-server-1:
+  entrypoint:
+  - mongod
+  - --configsvr
+  - --port
+  - '27019'
+  image: mongo:3.2
+mongo-config-server-2:
+  entrypoint:
+  - mongod
+  - --configsvr
+  - --port
+  - '27019'
+  image: mongo:3.2
+mongo-config-server-3:
+  entrypoint:
+  - mongod
+  - --configsvr
+  - --port
+  - '27019'
+  image: mongo:3.2
+mongos:
+  image: mongo:3.2
+  links:
+    - mongo-config-server-1:config-1
+    - mongo-config-server-2:config-2
+    - mongo-config-server-3:config-3
+  ports:
+    - '27017'
+  entrypoint:
+    - mongos
+    - --configdb
+    - config-1:27019,config-2:27019,config-3:27019

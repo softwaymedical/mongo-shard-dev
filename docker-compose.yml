@@ -11,7 +11,19 @@ mongos:
   image: mongo:3.2
   links:
     - mongo-config-server:config
+  ports:
+    - '27017'
   entrypoint:
     - mongos
     - --configdb
     - config:27019
+mongo-shard-00:
+  image: mongo:3.2
+  links:
+    - mongos:mongos
+  entrypoint:
+    - mongo
+    - --host
+    - mongos
+    - --port
+    - '27017'
