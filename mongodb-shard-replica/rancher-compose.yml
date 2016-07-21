@@ -1,0 +1,2 @@
+mongo-shard-rs:
+  scale: 3

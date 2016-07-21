@@ -1,0 +1,14 @@
+mongo-shard-rs:
+  image: softwaymedical/mongo-shard-replicaset:0.0.8
+  tty: true
+  stdin_open: true
+  environment:
+    - MONGOS_SERVER_HOST=mongos
+    - MONGOS_SERVER_PORT=27017
+    - MONGO_DATABASE=test
+    - MONGO_REPLICASET_NAME=rs0
+  links:
+    - mongo-shard-config/mongos:mongos
+    - mongo-shard-config/mongo-config-server-1:config-1
+    - mongo-shard-config/mongo-config-server-2:config-2
+    - mongo-shard-config/mongo-config-server-3:config-3
