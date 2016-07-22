@@ -31,3 +31,5 @@ mongos:
     - mongos
     - --configdb
     - config-1:27019,config-2:27019,config-3:27019
+    - --bind_ip
+    - 0.0.0.0
